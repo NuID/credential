@@ -1,0 +1,15 @@
+{:builds
+ {:browser
+  {:modules {:nuid_credential {:entries [nuid.credential]}},
+   :output-dir "target/browser",
+   :asset-path "target/browser",
+   :target :browser,
+   :compiler-options
+   {:externs ["externs/bn.ext.js" "externs/elliptic.ext.js"]}},
+  :node
+  {:output-to "target/node/nuid_credential.js",
+   :exports-var nuid.credential/exports,
+   :target :node-library,
+   :compiler-options
+   {:externs ["externs/bn.ext.js" "externs/elliptic.ext.js"]}}},
+ :deps {:aliases []}}
