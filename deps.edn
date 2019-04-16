@@ -1,7 +1,7 @@
 {:deps
  {nuid/zk
   {:git/url "https://github.com/nuid/zk.git",
-   :sha "07fe1582afd56ef18d275958315dd0b2c1e2919f"},
+   :sha "86befa891ef87c80a84b8ae870871767bb544cb2"},
   org.clojure/clojurescript {:mvn/version "1.10.520"},
   org.clojure/clojure {:mvn/version "1.10.0"}},
  :aliases
@@ -20,5 +20,5 @@
   {:extra-deps
    {nuid/deps
     {:git/url "https://github.com/nuid/deps.git",
-     :sha "735373d03749d29aefc8207aaa15030fd781e91b"}}}},
+     :sha "ed308bdc226607966f5d3a371d0217b6ce61ec1b"}}}},
  :paths ["src"]}
