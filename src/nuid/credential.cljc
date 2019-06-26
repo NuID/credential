@@ -17,16 +17,16 @@
 
 (def dispatch (comp :id :protocol))
 (defmulti coerce* dispatch)
-(defmethod coerce* :knizk
+(defmethod coerce* "knizk"
   [c]
   (zk/coerce c))
 
 (defmulti proof* dispatch)
-(defmethod proof* :knizk
+(defmethod proof* "knizk"
   [c]
   (zk/proof c))
 
 (defmulti verify* dispatch)
-(defmethod verify* :knizk
+(defmethod verify* "knizk"
   [c]
   (zk/verified? c))
