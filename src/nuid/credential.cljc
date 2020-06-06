@@ -9,7 +9,7 @@
    [nuid.cryptography.hash.algorithm.scrypt :as scrypt]
    [nuid.elliptic.curve :as curve]
    [nuid.elliptic.curve.point :as point]
-   [nuid.spec :as spec]
+   [nuid.spec.lib :as spec.lib]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
    [nuid.zk.protocol :as zk.protocol]
@@ -68,11 +68,11 @@
   (into
    (knizk/default-challenge-parameters)
    {::zk/protocol ::zk.protocol/knizk
-    ::knizk/pub   (spec/select-keys ::point/parameters credential)
+    ::knizk/pub   (spec.lib/select-keys ::point/parameters credential)
     ::knizk/keyfn (->>
                    (hash.alg/parameters-multi-spec credential)
-                   (spec/keys-spec->keys)
-                   (into [::hash/algorithm])
+                   (spec.lib/keys-spec->keys)
+                   (into #{::hash/algorithm})
                    (select-keys credential))}))
 
 (s/def ::proof

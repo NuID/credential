@@ -4,13 +4,14 @@
    [nuid.base64 :as base64]
    [nuid.codec :as codec]
    [nuid.credential.lib :as lib]
+   [nuid.spec.lib :as spec.lib]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
    [nuid.zk.protocol :as zk.protocol]
    #?@(:clj  [[clojure.alpha.spec :as s]]
        :cljs [[clojure.spec.alpha :as s]])))
 
-(s/def ::jwt (s/and string? seq))
+(s/def ::jwt ::spec.lib/not-empty-string)
 
 (defn ->identifier
   [challenge]
