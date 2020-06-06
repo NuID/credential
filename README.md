@@ -1,14 +1,14 @@
+<p align="right"><a href="https://nuid.io"><img src="https://nuid.io/svg/logo.svg" width="20%"></a></p>
+
 # nuid.credential
 
-Cross-platform authentication interface.
+Cross-platform, protocol agnostic credential interface.
 
 ## Requirements
 
 [`jvm`](https://www.java.com/en/download/), [`node + npm`](https://nodejs.org/en/download/), [`clj`](https://clojure.org/guides/getting_started), [`shadow-cljs`](https://shadow-cljs.github.io/docs/UsersGuide.html#_installation)
 
-## From Clojure and ClojureScript
-
-This library is intended as a common interface to working with and authenticating various credential types.
+## Clojure and ClojureScript
 
 ### tools.deps:
 
@@ -17,26 +17,3 @@ This library is intended as a common interface to working with and authenticatin
 ## Licensing
 
 Apache v2.0 or MIT
-
-## Contributing
-
-Install [`git-hooks`](https://github.com/icefox/git-hooks) and fire away. Make sure not to get bitten by [`externs`](https://clojurescript.org/guides/externs) if modifying `npm` dependencies.
-
-### formatting:
-
-```
-$ clojure -A:cljfmt            # check
-$ clojure -A:cljfmt:cljfmt/fix # fix
-```
-
-### dependencies:
-
-```
-## check
-$ npm outdated
-$ clojure -A:depot
-
-## update
-$ npm upgrade -s
-$ clojure -A:depot:depot/update
-```
