@@ -7,11 +7,12 @@
    [nuid.spec.lib :as spec.lib]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
+   [nuid.zk.lib :as zk.lib]
    [nuid.zk.protocol :as zk.protocol]
    #?@(:clj  [[clojure.alpha.spec :as s]]
        :cljs [[clojure.spec.alpha :as s]])))
 
-(s/def ::jwt ::spec.lib/not-empty-string)
+(s/def ::jwt spec.lib/not-empty-string?)
 
 (defn ->identifier
   [challenge]
@@ -29,6 +30,28 @@
    (s/conform ::zk/provable)
    (zk/proof)
    (s/unform ::knizk/proof)))
+
+(defn -verified-dispatch
+  [_ x]
+  (if (map? x)
+    (->identifier x)
+    x))
+
+(defmulti  ->verified -verified-dispatch)
+(defmethod ->verified ::zk.protocol/knizk
+  [secret x]
+  (let [challenge
+        (if (keyword? x)
+          (let [ch (zk.lib/default-challenge)]
+            (->>
+             (assoc ch ::knizk/secret secret)
+             (zk/pub)
+             (into ch)))
+          x)]
+    (->>
+     (->proof secret challenge)
+     (into challenge)
+     (s/unform ::zk/challenge))))
 
   ;; TODO: Cross-platform ->jwt
 
