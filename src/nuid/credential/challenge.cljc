@@ -4,7 +4,7 @@
    [nuid.base64 :as base64]
    [nuid.codec :as codec]
    [nuid.credential.lib :as lib]
-   [nuid.spec.lib :as spec.lib]
+   [nuid.spec :as spec]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
    [nuid.zk.lib :as zk.lib]
@@ -12,7 +12,7 @@
    #?@(:clj  [[clojure.alpha.spec :as s]]
        :cljs [[clojure.spec.alpha :as s]])))
 
-(s/def ::jwt spec.lib/not-empty-string?)
+(s/def ::jwt spec/not-empty-string?)
 
 (defn ->identifier
   [challenge]
