@@ -11,7 +11,7 @@
    :sha "defcda403e6ee31e6e492017177136ad855fe203"},
   nuid/zk
   {:git/url "https://github.com/nuid/zk.git",
-   :sha "7d89c684fdd28d9313a1956fd5e371cbba0fd909"},
+   :sha "0d46b4e023e6fdd3cf85b791d51c233513e9cb52"},
   nuid/base64
   {:git/url "https://github.com/nuid/base64.git",
    :sha "bfcd083c49dad1137b7e3f41ae167e1ece4f3d7b"},
@@ -21,7 +21,7 @@
   org.clojure/test.check {:mvn/version "1.0.0"},
   nuid/spec
   {:git/url "https://github.com/nuid/spec.git",
-   :sha "1acac913610383961f570f35bc4917bd0c0dd136"}},
+   :sha "50b7d4bc6ae0ad404b337732a913dc50d30cd6db"}},
  :aliases
  {:cljs
   {:extra-deps
