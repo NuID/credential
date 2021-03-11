@@ -1,5 +1,6 @@
 (ns nuid.credential
   (:require
+   [clojure.spec.alpha :as s]
    [nuid.base64 :as base64]
    [nuid.credential.datalog :as datalog]
    [nuid.credential.lib :as lib]
@@ -12,9 +13,7 @@
    [nuid.spec.lib :as spec.lib]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
-   [nuid.zk.protocol :as zk.protocol]
-   #?@(:clj  [[clojure.alpha.spec :as s]]
-       :cljs [[clojure.spec.alpha :as s]])))
+   [nuid.zk.protocol :as zk.protocol]))
 
 (s/def ::credential
   (s/or
