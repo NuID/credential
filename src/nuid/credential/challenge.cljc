@@ -1,5 +1,6 @@
 (ns nuid.credential.challenge
   (:require
+   [clojure.spec.alpha :as s]
    [clojure.string :as string]
    [nuid.base64 :as base64]
    [nuid.codec :as codec]
@@ -8,9 +9,7 @@
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
    [nuid.zk.lib :as zk.lib]
-   [nuid.zk.protocol :as zk.protocol]
-   #?@(:clj  [[clojure.alpha.spec :as s]]
-       :cljs [[clojure.spec.alpha :as s]])))
+   [nuid.zk.protocol :as zk.protocol]))
 
 (s/def ::jwt spec/not-empty-string?)
 
