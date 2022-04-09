@@ -2,23 +2,23 @@
  {org.clojure/clojure {:mvn/version "1.10.1"},
   nuid/elliptic
   {:git/url "https://github.com/nuid/elliptic.git",
-   :sha "55935a4471d8922c3ecc80c6fc8c1e2ef42fc59e"},
+   :sha "0c573a0bfc5ecf3792d5d2fd63b8e82b544fbe9e"},
   nuid/codec
   {:git/url "https://github.com/nuid/codec.git",
-   :sha "deba0f0df12e154d03f86b8193b57ccc80229f6a"},
+   :sha "ddb61ba39cc9cb8540735f329aef77bf9c513cde"},
   nuid/zk
   {:git/url "https://github.com/nuid/zk.git",
-   :sha "97f2afb076a911a96c04547083acd5733852fcb6"},
+   :sha "a93cad5435031d4e681282e7aa60871f973b01db"},
   nuid/base64
   {:git/url "https://github.com/nuid/base64.git",
-   :sha "a381b5f63263e3e85f0d124fc15a8bd1651ea7fd"},
+   :sha "1973314afc3710a045d617830a8fa64d86cecb11"},
   nuid/cryptography
   {:git/url "https://github.com/nuid/cryptography.git",
-   :sha "487c4d6453c8124afb0c58726c46cea76496a111"},
+   :sha "4d372c8fe7a663c25cd92928a913e29a9c9b850b"},
   org.clojure/test.check {:mvn/version "1.0.0"},
   nuid/spec
   {:git/url "https://github.com/nuid/spec.git",
-   :sha "63fc99403e8514e35814f97aff53d89ce3c5c55a"}},
+   :sha "50e2f2ccf5aecf3e0aeb7b084517508ea00ba08c"}},
  :aliases
  {:cljs {:extra-deps {thheller/shadow-cljs {:mvn/version "2.11.23"}}}},
  :paths ["src"]}
