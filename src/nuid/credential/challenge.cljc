@@ -4,25 +4,56 @@
    [clojure.string :as string]
    [nuid.base64 :as base64]
    [nuid.codec :as codec]
-   [nuid.credential.lib :as lib]
+   [nuid.credential :as credential]
    [nuid.spec :as spec]
    [nuid.zk :as zk]
    [nuid.zk.knizk :as knizk]
    [nuid.zk.lib :as zk.lib]
    [nuid.zk.protocol :as zk.protocol]))
 
-(s/def ::jwt spec/not-empty-string?)
 
-(defn ->identifier
-  [challenge]
-  (val (first (select-keys challenge lib/identifiers))))
+   ;;;
+   ;;; NOTE: specs
+   ;;;
 
-(defn -proof-dispatch
+
+(s/def ::jwt ::spec/not-empty-string)
+
+
+   ;;;
+   ;;; NOTE: helper functions, internal logic
+   ;;;
+
+
+(defn identifier [challenge]
+  (val
+   (first
+    (select-keys challenge credential/identifiers))))
+
+(defn proof-dispatch
   [_ challenge]
-  (->identifier challenge))
+  (identifier challenge))
 
-(defmulti  ->proof -proof-dispatch)
-(defmethod ->proof ::zk.protocol/knizk
+(defn verified-dispatch
+  [_ x]
+  (if (map? x) (identifier x) x))
+
+
+    ;;;
+    ;;; NOTE: multimethod, hierarchies
+    ;;;
+
+
+(defmulti proof proof-dispatch)
+(defmulti verified verified-dispatch)
+
+
+   ;;;
+   ;;; NOTE: multimethod implementations
+   ;;;
+
+
+(defmethod proof ::zk.protocol/knizk
   [secret challenge]
   (->>
    (assoc challenge ::knizk/secret secret)
@@ -30,34 +61,29 @@
    (zk/proof)
    (s/unform ::knizk/proof)))
 
-(defn -verified-dispatch
-  [_ x]
-  (if (map? x)
-    (->identifier x)
-    x))
-
-(defmulti  ->verified -verified-dispatch)
-(defmethod ->verified ::zk.protocol/knizk
+(defmethod verified ::zk.protocol/knizk
   [secret x]
-  (let [challenge
-        (if (keyword? x)
-          (let [ch (zk.lib/default-challenge)]
-            (->>
-             (assoc ch ::knizk/secret secret)
-             (zk/pub)
-             (into ch)))
-          x)]
-    (->>
-     (->proof secret challenge)
-     (into challenge)
-     (s/unform ::zk/challenge))))
+  (let [challenge (if (keyword? x)
+                    (let [ch (zk.lib/default-challenge)]
+                      (->> (assoc ch ::knizk/secret secret)
+                           (zk/pub)
+                           (into ch)))
+                    x)]
+    (->> (proof secret challenge)
+         (into challenge)
+         (s/unform ::zk/challenge))))
 
-  ;; TODO: Cross-platform ->jwt
 
-(defn <-jwt
-  [jwt]
+   ;;;
+   ;;; NOTE: api
+   ;;;
+
+
+;; TODO: cross-platform, signed jwt handling
+(defn jwt->challenge [jwt]
   (->>
-   (second (string/split jwt #"\."))
+   (string/split jwt #"\.")
+   (second)
    (base64/str)
    (codec/decode "application/json")
-   (lib/keywordize)))
+   (zk.lib/keywordize)))
