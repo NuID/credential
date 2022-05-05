@@ -8,17 +8,17 @@
    :sha "ddb61ba39cc9cb8540735f329aef77bf9c513cde"},
   nuid/zk
   {:git/url "https://github.com/nuid/zk.git",
-   :sha "a93cad5435031d4e681282e7aa60871f973b01db"},
+   :sha "30d494bf239d3be8f4921c9d42d21f12d74c3399"},
   nuid/base64
   {:git/url "https://github.com/nuid/base64.git",
    :sha "1973314afc3710a045d617830a8fa64d86cecb11"},
   nuid/cryptography
   {:git/url "https://github.com/nuid/cryptography.git",
-   :sha "4d372c8fe7a663c25cd92928a913e29a9c9b850b"},
+   :sha "46667476309e5d0172a447851c205222491441a1"},
   org.clojure/test.check {:mvn/version "1.0.0"},
   nuid/spec
   {:git/url "https://github.com/nuid/spec.git",
-   :sha "50e2f2ccf5aecf3e0aeb7b084517508ea00ba08c"}},
+   :sha "ad05529d0cddaf703c501e1513a45db0ff91acfe"}},
  :aliases
  {:cljs {:extra-deps {thheller/shadow-cljs {:mvn/version "2.11.23"}}}},
  :paths ["src"]}
